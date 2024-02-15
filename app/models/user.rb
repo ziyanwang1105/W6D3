@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-    validates :email, uniqueness:true, presence:true
-    validates :name, presence:true
+    validates :username, presence:true, uniqueness: true
 
+    has_many :artworks,
+        foreign_key: :artist_id,
+        class_name: :Artwork,
+        inverse_of: :artist
 end
