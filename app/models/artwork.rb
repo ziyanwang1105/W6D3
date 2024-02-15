@@ -6,11 +6,21 @@ class Artwork < ApplicationRecord
         class_name: :User
 
     has_many :artwork_shares,
-        inverse_of: :artwork
+        inverse_of: :artwork,
+        dependent: :destroy
 
     has_many :shared_viewers,
         through: :artwork_shares,
         source: :viewer
+
+    has_many :comments,
+        dependent: :destroy,
+        inverse_of: :artwork
+
+    has_many :comment_authors,
+        through: :comments,
+        source: :author
+
 
     def self.artworks_for_user_id(user_id) #owned AND shared artworks for user_id
        Artwork

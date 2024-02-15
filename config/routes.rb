@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :users, except: [:new, :edit] do
     resources :artworks, only: :index
+    resources :comments, only: :index
   end
   # get 'users/:id', to: 'users#show', as: 'user'
   # get 'users/new', to: 'users#new', as: 'new_user'
-  resources :artworks, except: [:index, :new, :edit]
+  resources :artworks, except: [:index, :new, :edit] do
+    resources :comments, only: :index
+  end
   resources :artwork_shares, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
 end
