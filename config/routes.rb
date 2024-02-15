@@ -7,9 +7,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :users do
-    resources :chirps, only:['index', 'create', 'show']
-  end
+  resources :users
   # get 'users/:id', to: 'users#show', as: 'user'
   # get 'users/new', to: 'users#new', as: 'new_user'
 end
