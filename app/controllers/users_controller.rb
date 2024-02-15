@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
     def index
-        users = User.all
-        render json: users
+        username = params[:users][:username]
+        if username
+            render json: User.find_by(username: username)
+        else
+            users = User.all
+            render json: users
+        end
     end
 
     def create
@@ -35,7 +40,7 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        incoming_id= params[:id]
+        incoming_id = params[:id]
         user = User.destroy(incoming_id)
         if user
             redirect_to users_url()

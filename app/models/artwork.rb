@@ -21,6 +21,8 @@ class Artwork < ApplicationRecord
         through: :comments,
         source: :author
 
+    has_many :likes, as: :likeable
+
 
     def self.artworks_for_user_id(user_id) #owned AND shared artworks for user_id
        Artwork

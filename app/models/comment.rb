@@ -6,6 +6,9 @@ class Comment < ApplicationRecord
     belongs_to :author,
         class_name: :User
 
+    has_many :likes, as: :likeable
+
+
     def self.find_by_user_or_artwork(user_id, artwork_id)
         if user_id
             return Comment.find_by(author_id: user_id)
