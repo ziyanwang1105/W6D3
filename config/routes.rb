@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :users
+  resources :users, except: [:new, :edit] do
+    resources :artworks, only: :index
+  end
   # get 'users/:id', to: 'users#show', as: 'user'
   # get 'users/new', to: 'users#new', as: 'new_user'
+  resources :artworks, except: [:index, :new, :edit]
+  resources :artwork_shares, only: [:create, :destroy]
 end
